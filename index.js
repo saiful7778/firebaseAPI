@@ -18,8 +18,6 @@ app.post("/", (req, res) => {
         response: res
     });
     let getData = req.body.queryResult.parameters;
-
-    let replyData = "Ok sir";
     if (getData.hemu == "0" || getData.temp == "0") {
         console.log("has");
     } else {
@@ -39,7 +37,7 @@ app.post("/", (req, res) => {
         }
     }
     function demo(agent) {
-        agent.add(replyData)
+        agent.add("ok sir.")
     }
     let intentMap = new Map();
     intentMap.set("esp32iot", demo);
