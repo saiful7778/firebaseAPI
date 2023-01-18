@@ -26,15 +26,16 @@ app.post("/", (req, res) => {
                 let patchData = {
                     [x]: +getData[x]
                 }
-                fetch("https://dtrhomeautomation-default-rtdb.asia-southeast1.firebasedatabase.app/allRelay.json", {
-                    method: 'PATCH',
-                    body: JSON.stringify(patchData),
-                    headers: {
-                        'Content-type': 'application/json; charset=UTF-8',
-                    },
-                })
-                    .then((response) => response.json())
-                    .then((json) => console.log(json)).catch((error) => {console.log(error);})
+                request.patch(
+                    "https://dtrhomeautomation-default-rtdb.asia-southeast1.firebasedatabase.app/allRelay.json",
+                    JSON.stringify(patchData),
+                    (error, response, body) => {
+                        if (!error && response.statusCode == 200) {
+                            console.log(body);
+                            console.log(response.statusCode);
+                        }
+                    }
+                );
             }
         }
     }
