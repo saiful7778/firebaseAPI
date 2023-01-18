@@ -7,7 +7,7 @@ const port = process.env.PORT || 8000;
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req,res) => {
+app.get('/', (req, res) => {
     res.json({
         speech: "there from api!"
     })
@@ -19,32 +19,32 @@ app.post("/", (req, res) => {
     });
     let getData = req.body.queryResult.parameters;
 
-    let replyData = "";
-    if(getData.hemu == "0" || getData.temp == "0"){
+    let replyData = "Ok sir";
+    if (getData.hemu == "0" || getData.temp == "0") {
         console.log("has");
-    }else{
-        for(let x in getData){
-            if(getData[x] !== ""){
+    } else {
+        for (let x in getData) {
+            if (getData[x] !== "") {
                 let patchData = {
                     [x]: getData[x]
                 }
                 request.patch("https://dtrhomeautomation-default-rtdb.asia-southeast1.firebasedatabase.app/allRelay.json",
-                patchData,(error, response, body) => {
-                    if (!error && response.statusCode == 200) {
-                        console.log(body);
-                        console.log(response.statusCode);
-                    }
-                })
+                    patchData, (error, response, body) => {
+                        if (!error && response.statusCode == 200) {
+                            console.log(body);
+                            console.log(response.statusCode);
+                        }
+                    })
             }
         }
     }
-    function demo(agent){
+    function demo(agent) {
         agent.add(replyData)
     }
     let intentMap = new Map();
     intentMap.set("esp32iot", demo);
     agent.handleRequest(intentMap);
-    
+
 })
 
 app.listen(port, () => {
