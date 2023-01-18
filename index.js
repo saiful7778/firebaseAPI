@@ -7,7 +7,7 @@ app.use(cors());
 
 app.get('/', (req,res) => {
     res.json({
-        status: "ok"
+        speech: "there from api!"
     })
 });
 
