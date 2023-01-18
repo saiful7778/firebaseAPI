@@ -28,7 +28,7 @@ app.post("/", (req, res) => {
                 }
                 fetch("https://dtrhomeautomation-default-rtdb.asia-southeast1.firebasedatabase.app/allRelay.json", {
                     method: 'PATCH',
-                    body: patchData,
+                    body: JSON.stringify(patchData),
                     headers: {
                         'Content-type': 'application/json; charset=UTF-8',
                     },

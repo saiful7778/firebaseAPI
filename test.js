@@ -5,6 +5,6 @@ for(let x in obj){
         let patchData = {
             [x]: +obj[x]
         }
-        console.log(typeof patchData);
+        console.log(JSON.stringify(patchData));
     }
 }
